@@ -77,26 +77,33 @@ div[data-testid="stMetric"] div[data-testid="stMetricValue"] {
 
 
 # --- Helper Function to Load Default Scenarios ---
-def load_default_scenarios() -> list:
-    scenarios_dir = "/scheduler/data/scenarios"
+def load_default_scenarios():
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+
+    scenarios_dir = os.path.join(
+        base_dir,
+        "scheduler",
+        "data",
+        "scenarios"
+    )
+
     default_scenarios = []
-    
-    # Ensure correct relative path if running container-side
-    if not os.path.exists(scenarios_dir):
-        scenarios_dir = "./scheduler/data/scenarios"
 
     try:
         filenames = sorted(os.listdir(scenarios_dir))
+
         for fname in filenames:
             if fname.endswith(".json"):
-                fpath = os.path.join(scenarios_dir, fname)
-                with open(fpath, "r", encoding="utf-8") as f:
-                    scen_data = json.load(f)
-                    default_scenarios.append(scen_data)
+                with open(
+                    os.path.join(scenarios_dir, fname),
+                    "r",
+                    encoding="utf-8"
+                ) as f:
+                    default_scenarios.append(json.load(f))
+
     except Exception as e:
-        # Fallback empty config in case of folder discovery glitches
-        st.warning(f"Error loading system scenarios: {e}")
-        
+        st.error(f"Error loading system scenarios: {e}")
+
     return default_scenarios
 
 
