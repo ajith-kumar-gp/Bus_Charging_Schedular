@@ -10,7 +10,7 @@ def render_bus_view(scenario, schedule_dict: dict):
     """
     Renders per-bus travel diaries, charging events, and delays.
     """
-    st.markdown("### 🚌 Fleet Timeline Chronicles")
+    st.markdown("### 🚌 Bus Timeline Explorer")
     
     # 1. Broad metric summary of performance
     m_cols = st.columns(3)
@@ -22,12 +22,12 @@ def render_bus_view(scenario, schedule_dict: dict):
         )
     with m_cols[1]:
         st.metric(
-            label="⚖️ Variance (Avg. Delay)",
+            label="⚖️ Operator Delay Variance",
             value=f"{schedule_dict.get('totalWaitTime', 0.0) / len(scenario.buses):.1f} mins",
             help="System-wide average waiting delay per vehicle."
         )
     with m_cols[2]:
-        validity_status = "✅ 100% Feasible" if schedule_dict.get("isValid", True) else "❌ VIOLATION"
+        validity_status = "✅ Feasible" if schedule_dict.get("isValid", True) else "❌ VIOLATION"
         st.metric(
             label="⚡ Safe Charging Margins",
             value=validity_status,
@@ -50,7 +50,7 @@ def render_bus_view(scenario, schedule_dict: dict):
         # Display key metrics
         stats_cols = st.columns(3)
         stats_cols[0].metric("Queue Wait Time", f"{timeline['totalWaitTime']} mins")
-        stats_cols[1].metric("Total Travel Time", f"{timeline['totalTravelTime']} mins if valid")
+        stats_cols[1].metric("Total Travel Time", f"{timeline['totalTravelTime']} mins")
         
         # Render historical diary of stopped stations
         charges = timeline.get("charges", [])

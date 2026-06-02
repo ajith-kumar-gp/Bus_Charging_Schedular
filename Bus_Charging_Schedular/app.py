@@ -207,7 +207,7 @@ if active_raw:
 
     # --- LEFT COL: SANDBOX MODIFIERS ---
     with left_col:
-        st.markdown("<h4 style='color:#0f172a; margin-top:0;'>🛠️ Real-Time Parameters Sandbox</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 style='color:#0f172a; margin-top:0;'>🛠️ Configuration Panel</h4>", unsafe_allow_html=True)
         st.markdown("<p style='font-size:12px; color:#64748b; margin-top:-8px;'>Fulfill the technical rounds by modifying hardware, distances, and priority weight metrics live.</p>", unsafe_allow_html=True)
 
         # 5. Weights sliders
@@ -219,7 +219,7 @@ if active_raw:
             step=1.0
         )
         w_op = st.slider(
-            "Operator Fairness weight (Average Variance Gap)",
+            "Operator Fairness weight",
             min_value=1.0, max_value=100.0,
             value=float(active_raw.get("weights", {}).get("operator", 1.0)),
             step=1.0
@@ -239,7 +239,7 @@ if active_raw:
         active_raw["weights"]["overall"] = w_all
 
         # Physical constantssandbox
-        st.markdown("##### ⏱️ Physical constants sandbox")
+        st.markdown("##### ⏱️ Physical Parameters")
         c_cols = st.columns(2)
         with c_cols[0]:
             batt_range = st.number_input(
@@ -259,7 +259,7 @@ if active_raw:
         active_raw["constants"]["chargeDurationMin"] = charge_duration
 
         # Charger capacities scaling
-        st.markdown("##### ⚡ Charger stations capacities sandbox")
+        st.markdown("##### ⚡ Charger stations capacities")
         for idx, station_cfg in enumerate(active_raw.get("stations", [])):
             s_cols = st.columns([3, 2])
             with s_cols[0]:
@@ -343,7 +343,7 @@ if active_raw:
             )
         with m_grid[1]:
             st.metric(
-                label="Peak Starvation Delay",
+                label="Worst Bus Wait Time",
                 value=f"{optimized_schedule_dict.get('maxWaitTime', 0.0)} mins",
                 help="The absolute single worst-case delay encountered by a bus."
             )
