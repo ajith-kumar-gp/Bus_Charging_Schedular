@@ -1,0 +1,12 @@
+{
+  "name": "Bengaluru–Kochi Mainline",
+  "origin": "Bengaluru",
+  "destination": "Kochi",
+  "segments": [
+    {"from": "Bengaluru", "to": "A", "distance": 100.0},
+    {"from": "A", "to": "B", "distance": 120.0},
+    {"from": "B", "to": "C", "distance": 100.0},
+    {"from": "C", "to": "D", "distance": 120.0},
+    {"from": "D", "to": "Kochi", "distance": 100.0}
+  ]
+}

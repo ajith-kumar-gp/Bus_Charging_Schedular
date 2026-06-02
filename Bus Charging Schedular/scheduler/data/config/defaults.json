@@ -1,0 +1,12 @@
+{
+  "batteryRangeKm": 240.0,
+  "chargeDurationMin": 25,
+  "speedKmph": 60.0,
+  "operators": ["kpn", "freshbus", "flixbus"],
+  "stations": [
+    {"id": "A", "name": "Station A (Chikballapur)", "chargersCount": 1},
+    {"id": "B", "name": "Station B (Anantapur)", "chargersCount": 1},
+    {"id": "C", "name": "Station C (Kurnool)", "chargersCount": 1},
+    {"id": "D", "name": "Station D (Mahbubnagar)", "chargersCount": 1}
+  ]
+}
