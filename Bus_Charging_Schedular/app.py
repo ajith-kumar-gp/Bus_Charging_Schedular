@@ -121,7 +121,10 @@ if "selected_scenario_id" not in st.session_state or st.session_state.selected_s
     else:
         st.session_state.selected_scenario_id = "empty"
 
-if "active_scenario_raw" not in st.session_state:
+if (
+    "active_scenario_raw" not in st.session_state
+    or not st.session_state.active_scenario_raw
+    ):
     if st.session_state.selected_scenario_id in all_scenarios_dict:
         st.session_state.active_scenario_raw = copy.deepcopy(all_scenarios_dict[st.session_state.selected_scenario_id])
     else:
@@ -150,16 +153,25 @@ header_col1, header_col2, header_col3 = st.columns([3, 2, 1])
 
 with header_col1:
     scenario_choices = {s_id: sc["name"] for s_id, sc in all_scenarios_dict.items()}
+    scenario_ids = list(scenario_choices.keys())
+
     selected_scen_id = st.selectbox(
         "📂 Active Operational Scenario Template:",
-        options=list(scenario_choices.keys()),
-        format_func=lambda x: scenario_choices[x],
+        options=scenario_ids,
+        index=0 if scenario_ids else None,
+        format_func=lambda x: scenario_choices.get(x, x),
         key="scenario_selector_main"
     )
 
-    if selected_scen_id != st.session_state.selected_scenario_id:
+    if (
+        selected_scen_id
+        and selected_scen_id in all_scenarios_dict
+        and selected_scen_id != st.session_state.selected_scenario_id
+    ):
         st.session_state.selected_scenario_id = selected_scen_id
-        st.session_state.active_scenario_raw = copy.deepcopy(all_scenarios_dict[selected_scen_id])
+        st.session_state.active_scenario_raw = copy.deepcopy(
+            all_scenarios_dict[selected_scen_id]
+        )
         st.rerun()
 
 # with header_col2:
