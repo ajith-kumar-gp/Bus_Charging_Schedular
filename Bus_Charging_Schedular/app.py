@@ -139,19 +139,8 @@ if (
 
 
 # --- Header Structure ---
-st.markdown("""
-<div style="margin-bottom: 10px;">
-  <span style="background-color: #10b981; color: white; font-size: 10px; font-weight: bold; font-family: monospace; padding: 2px 6px; border-radius: 3px; letter-spacing: 0.1em; text-transform: uppercase;">
-    100% Data-Driven Model
-  </span>
-  <span style="font-size: 11px; color: #4338ca; font-weight: 600; background-color: #e0e7ff; padding: 2px 8px; border-radius: 9999px; margin-left: 8px; border: 1px solid #c7d2fe;">
-    Decoupled Rules Registry Active
-  </span>
-</div>
-""", unsafe_allow_html=True)
-
-st.title("Electric Bus Multi-Objective Dispatch Scheduler")
-st.caption("Discrete Event Queue Simulator (DES) with meta-heuristic search optimization. 100% decoupling between scheduler core logic and underlying configuration datasets.")
+st.title("Electric Bus Charging Scheduler")
+st.caption("Rule-based scheduling framework for optimizing charging allocation,operator fairness, and overall network efficiency.")
 
 st.write("")
 
